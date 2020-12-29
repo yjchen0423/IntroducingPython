@@ -65,3 +65,8 @@ print(letters[::-1])
 print(letters[-51:-50])
 print(letters[:70])
 
+
+"""
+Ch. 2.3.8
+"""
+
