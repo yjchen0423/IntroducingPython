@@ -64,9 +64,14 @@ print(letters[::-1])
 
 print(letters[-51:-50])
 print(letters[:70])
+print(letters[70:71])
 
 
 """
 Ch. 2.3.8
 """
-'This is pushed from repl'
+'len()'
+
+print(len(letters))
+
+
