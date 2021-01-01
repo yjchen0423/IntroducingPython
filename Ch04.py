@@ -62,4 +62,16 @@ desserts = ['tiramisu', 'ice cream', 'pie', 'pudding']
 for day, fruit, drink, dessert in zip(days, fruits, drinks, desserts):
     print(f'{day}: drink {drink}, eat {fruit}, and enjoy {dessert}')
 
+
+"""Ch 4.6"""
+'comprehension 推導式'
+'[expression for item in iterable]'
+
+number_list = [number - 1 for number in range(1, 6)]
+print(number_list)
+
+
+
+
+
 """Ch 4.13 Exercise"""
