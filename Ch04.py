@@ -62,4 +62,93 @@ desserts = ['tiramisu', 'ice cream', 'pie', 'pudding']
 for day, fruit, drink, dessert in zip(days, fruits, drinks, desserts):
     print(f'{day}: drink {drink}, eat {fruit}, and enjoy {dessert}')
 
+
+"""Ch 4.6"""
+'comprehension 推導式'
+'[expression for item in iterable]'
+
+number_list = [number - 1 for number in range(1, 6)]
+print(number_list)
+
+
+'[expression for item in iterable if condition]'
+
+a_list = [number for number in range(1, 10) if number % 2 == 0]
+print(a_list)
+
+rows = range(1, 4)
+cols = range(1, 3)
+for row in rows:
+    for col in cols:
+        print(row, col)
+
+cells = [(row, col) for row in rows for col in cols]
+for cell in cells:
+    print(cell)
+
+for row, col in cells:
+    print(row, col)
+
+
+'{key_expression: value_expression for expression in iterable}'
+
+word = 'letters'
+letter_counts = {letter: word.count(letter) for letter in word}
+print(letter_counts)
+
+
+"""Ch 4.7"""
+
+'def() and return'
+def echo(anything):
+    return anything + ' ' + anything
+
+
+def echo2(anything):
+    print(f"{anything} {anything}")
+
+
+echo('test1')
+echo2('test2')
+
+print(echo('test1'))
+
+
+def commentary(color):
+    if color == 'red':
+        return 'it is a tomato.'
+    elif color == 'green':
+        return 'it is a green pepper.'
+    elif color == 'bee purple':
+        return 'i do not know this.'
+    else:
+        return 'enter color that I know!'
+
+
+comment = commentary('red')
+print(comment)
+
+
+"""Ch 4.7.4"""
+
+'*args'
+
+def print_args(*args):
+    print(f'there are several items here: {args}')
+
+
+print_args(1, 2)
+print_args(1, 2, 3, 'a')
+
+
+"""Ch 4.7.5"""
+'**kwargs'
+
+def print_kwargs(**kwargs):
+    print('keyword arguments: ', kwargs)
+
+
+print_kwargs(wine='wine1', entree='entree1')
+print_kwargs(wine='wine2', entree='entree2', dessert='dessert2')
+
 """Ch 4.13 Exercise"""
