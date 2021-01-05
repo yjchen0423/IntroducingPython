@@ -152,7 +152,70 @@ print_kwargs(wine='wine1', entree='entree1')
 print_kwargs(wine='wine2', entree='entree2', dessert='dessert2')
 
 
-"""Ch 4.8"""
+"""Ch 4.7.7"""
+
+'functions'
+
+def answer():
+    print(42)
+
+
+answer()
+
+
+def run_something(func):
+    func()
+
+
+run_something(answer)
+
+
+def sum_args(*args):
+    return sum(args)
+
+
+def run_something2(func, *args):
+    return func(*args)
+
+
+print(run_something2(sum_args, 1, 2, 3, 4, 5))
+
+
+
+"""Ch 4.7.8"""
+
+def outer(a, b):
+    def inner(c, d):
+        return c + d
+    return inner(a, b)
+
+
+
+print(outer(4, 7))
+
+
+"""Ch 4.7.10"""
+
+'lambda()'
+
+
+def edit_story(words, func):
+    for word in words:
+        print(func(word))
+
+
+word_for_test = ['abcdef', 'bcdefg', 'cdefgh']
+
+
+
+def enliven(word):
+    return word.capitalize() + "!"
+
+
+print(edit_story(word_for_test, enliven))
+print(edit_story(word_for_test, lambda word: word.capitalize() + '!'))
+
+
 
 
 """Ch 4.13 Exercise"""
