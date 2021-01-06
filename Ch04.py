@@ -196,7 +196,7 @@ print(outer(4, 7))
 
 """Ch 4.7.10"""
 
-'lambda()'
+'lambda(): lambda arguments: expression'
 
 
 def edit_story(words, func):
@@ -215,6 +215,85 @@ def enliven(word):
 print(edit_story(word_for_test, enliven))
 print(edit_story(word_for_test, lambda word: word.capitalize() + '!'))
 
+
+"""Ch 4. 9"""
+
+'Decorators: modify an existing function without changing its source code'
+
+
+def document_it(func):
+    def new_function(*args, **kwargs):
+        print('Running function: ', func.__name__)
+        print('Positional arguments: ', args)
+        print('Keyword arguments: ', kwargs)
+        result = func(*args, **kwargs)
+        print('Result: ', result)
+        return result
+    return new_function
+
+
+
+'example from https://medium.com/citycoddee/python%E9%80%B2%E9%9A%8E%E6%8A%80%E5%B7%A7-3-%E7%A5%9E%E5%A5%87%E5%8F%88%E7%BE%8E%E5%A5%BD%E7%9A%84-decorator-%E5%97%B7%E5%97%9A-6559edc87bc0'
+
+# print_func_name is a decorator that
+# adds one more line to indicate which function is used now
+
+def print_func_name(func):
+    def wrap():
+        print("Now use function '{}'".format(func.__name__))
+        func()
+    return wrap
+
+
+
+@print_func_name
+def dog_bark():
+    print("Bark !!!")
+
+
+@print_func_name
+def cat_miaow():
+    print("Miaow ~~~")
+
+dog_bark()  # since there is a '@'
+cat_miaow()
+
+'order of decortors'
+
+def print_func_name2(func):
+    def wrap2():
+        print("Now use the function '{}'".format(func.__name__))
+        func()
+    return wrap2
+
+def print_time(func2):
+    import time
+    def wrap3():
+        print(f"Inner function is {func2.__name__}")
+        print(f"Time is now '{int(time.time())}'.")
+        func2()
+    return wrap3
+
+
+@print_func_name2
+@print_time
+def dog_bark2():
+    print("Bark !!!")
+
+
+
+dog_bark2()
+# dog_bark2 is first entered as func2 in print_time
+# then wrap3 in print_time is entered as func in print_func_name2
+# displayed order:
+# 1. print_func_name2, print out "Now use the function func(wrap3)"
+# 2. execute func(), which is wrap3, print out Inner function is func2 (dog_bark2),
+# 3. then print "Time is now..."
+# 4. last in print_time, execute func2(), which is dog_bark2,
+# 5. and print "Bark !!!"
+
+
+'Example from book'
 
 
 
