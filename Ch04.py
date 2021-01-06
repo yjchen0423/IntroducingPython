@@ -221,18 +221,6 @@ print(edit_story(word_for_test, lambda word: word.capitalize() + '!'))
 'Decorators: modify an existing function without changing its source code'
 
 
-def document_it(func):
-    def new_function(*args, **kwargs):
-        print('Running function: ', func.__name__)
-        print('Positional arguments: ', args)
-        print('Keyword arguments: ', kwargs)
-        result = func(*args, **kwargs)
-        print('Result: ', result)
-        return result
-    return new_function
-
-
-
 'example from https://medium.com/citycoddee/python%E9%80%B2%E9%9A%8E%E6%8A%80%E5%B7%A7-3-%E7%A5%9E%E5%A5%87%E5%8F%88%E7%BE%8E%E5%A5%BD%E7%9A%84-decorator-%E5%97%B7%E5%97%9A-6559edc87bc0'
 
 # print_func_name is a decorator that
@@ -295,6 +283,98 @@ dog_bark2()
 
 'Example from book'
 
+
+def document_it(func):
+    def new_function(*args, **kwargs):
+        print('Running function: ', func.__name__)
+        print('Positional arguments: ', args)
+        print('Keyword arguments: ', kwargs)
+        result = func(*args, **kwargs)
+        print('Result: ', result)
+        return result
+    return new_function
+
+def square_it(func):
+    def new_func_suqare_it(*args, **kwargs):
+        result = func(*args, **kwargs)
+        return result * result
+    return new_func_suqare_it
+
+def add_ints(a, b):
+    return a + b
+
+document_it(add_ints)(3, 5)
+# document_it(func)(func's args)
+
+@document_it
+@square_it
+def add_ints2(a, b):
+    return a + b
+
+add_ints2(4, 7)
+
+
+"""Ch 4.10"""
+
+'local & global'
+
+animal = 'fruitbat'
+def print_global():
+    print("inside print_global: ", animal)
+
+print("at the top level: ", animal)
+
+print_global()
+
+
+def change_and_print_global():
+    print('inside change_and_print_global: ', animal)
+    # animal = 'wombat'  # there will be an error
+    print('after change:', animal)
+
+
+def change_local():
+    animal = 'wombat'
+    print('inside change_local: ', animal, id(animal))
+
+change_local()
+
+
+ani2 = 'fruitbat2'
+def cahnge_and_print_global2():
+    global ani2
+    ani2 = 'wombat'
+    print('inside change_and_print_global: ', ani2)
+
+
+print(ani2)
+cahnge_and_print_global2()
+print(ani2)
+
+
+'_ and __'
+
+def amazing():
+    """This is the amazing function"""
+    print(f'name: {amazing.__name__}')
+    print(f'help docs: {amazing.__doc__}')
+
+
+amazing()
+
+
+
+"""Ch 4. 11"""
+
+'try & except'
+
+short_list = [1, 2, 3]
+position = 5
+
+try:
+    short_list[position]
+except:
+    print(f'need a position between 0 and {len(short_list) - 1}, what we had is {position}')
 
 
 """Ch 4.13 Exercise"""
