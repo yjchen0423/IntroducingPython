@@ -455,4 +455,64 @@ square_dict = {num:num*num for num in range(10)}
 print(square_dict)
 
 # 6.
+odd = {i for i in range(10) if i % 2 != 0}
+print(odd)
+
+# 7.
+for thing in ('Got %s' % number for number in range(10)):
+    print(thing)
+
+# 8.
+def good():
+    return ['Harry', 'Ron', 'Hermione']
+
+# 9.
+def get_odds():
+    for number in range(1, 10, 2):
+        yield number
+
+count = 1
+for i in get_odds():
+    if count == 3:
+        print(i)
+        break
+    count += 1
+
+# 10.
+
+def test(func):
+    def new_func(*args, **kwargs):
+        print(f'Now use function {func.__name__}, start!')
+        result = func(*args, **kwargs)
+        print('end!')
+        return result
+    return new_func
+
+
+@test
+def cat():
+    print('catcat')
+
+cat()
+
+# 11.
+class OopsException(Exception):
+    pass
+
+try:
+    raise OopsException()
+except:
+    print('caught an oops')
+
+# 12.
+titles = ['Creature of Habit', 'Crewel Fate']
+plots = ['A nun turns into a monster', 'A haunted yarn shop']
+
+movies = dict(zip(titles, plots))
+print(movies)
+
+
+
+
+
 
