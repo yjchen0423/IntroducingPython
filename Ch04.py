@@ -377,4 +377,82 @@ except:
     print(f'need a position between 0 and {len(short_list) - 1}, what we had is {position}')
 
 
+'except exceptiontype as name'
+
+while True:
+    value = input('Position [q to quit]?')
+    if value == 'q':
+        break
+    try:
+        position = int(value)
+        print(short_list[position])
+    except IndexError as err:
+        print('Bad index:', position)
+    except Exception as other:
+        # Exception is all parent class of all errors
+        print('Something is broken: ', other)
+
+
+"""Ch 4.12"""
+
+'costumed exceptions'
+# class UppercaseException(Exception):
+#     pass
+#
+# words = ['eenie', 'meenie', 'miny', 'MO']
+#
+#
+# for word in words:
+#     if word.isupper():
+#         raise UppercaseException(word)
+
+
+
+
 """Ch 4.13 Exercise"""
+
+# 1.
+guess_me = 7
+
+if guess_me < 7:
+    print('too low')
+elif guess_me > 7:
+    print('too high')
+else:
+    print('just right')
+
+# 2.
+start = 1
+while True:
+    if start < guess_me:
+        print(f'start is {start} and guess_me is {guess_me}')
+        print('start is too low')
+    elif start == guess_me:
+        print(f'start is {start} and guess_me is {guess_me}')
+        print('found it!')
+        break
+    else:
+        print(f'oops')
+        break
+    start += 1
+
+# 3.
+j = []
+
+for i in range(3, -1, -1):
+    j.append(i)
+
+print(j)
+
+# 4.
+even_num = [i for i in range(0, 10) if i % 2 == 0]
+
+print(even_num)
+
+# 5.
+square_dict = {num:num*num for num in range(10)}
+
+print(square_dict)
+
+# 6.
+
