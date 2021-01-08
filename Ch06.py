@@ -169,15 +169,44 @@ class Duck2():
     def __init__(self, input_name):
         self.hidden_name = input_name
     @property
+    # as getter
     def name(self):
         print('inside the getter')
         return self.hidden_name
     @name.setter
+    # as setter
     def name(self, input_name):
         print('inside setter')
         self.hidden_name = input_name
 
 
 fowl2 = Duck2('Howard2')
+# apply Howard2 as input_name of argu in __init__
 print(fowl2.name)
+# get the name using getter, so it returns self.hidden_name
+fowl2.name = 'Donald'
+# setter: set Donald as input_name in setter name
+print(fowl2.name)
+# get the name using getter again
+
+
+
+class Circle():
+    def __init__(self, radius):
+        self.radius = radius
+    @property
+    def diameter(self):
+        return 2 * self.radius
+
+c = Circle(5)
+print(c.radius)
+print(c.diameter)
+
+c.radius = 7
+print(c.diameter)
+
+# since there is no setter for diameter,
+# we cannot change diameter value from outside
+
+
 
