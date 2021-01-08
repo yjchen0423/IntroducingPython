@@ -205,8 +205,31 @@ print(c.diameter)
 c.radius = 7
 print(c.diameter)
 
-# since there is no setter for diameter,
+# since there is no setter for diameter (@diameter.setter),
 # we cannot change diameter value from outside
 
+
+"""Ch. 6.9"""
+
+'begin with two underscores (__)'
+
+class Duck3():
+    def __init__(self, input_name):
+        self.__name = input_name
+    @property
+    def name(self):
+        print("inside the getter")
+        return self.__name
+    @name.setter
+    def name(self):
+        self.__name = input_name
+
+fowl3 = Duck3('Howard3')
+print(fowl3.name)
+fowl3.name = 'Donald2'
+print(fowl3.name)
+
+
+"""Ch. 6.10"""
 
 
