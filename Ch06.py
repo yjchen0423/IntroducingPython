@@ -130,7 +130,54 @@ class EmailPerson(Person):
 
 bob = EmailPerson('Bob', 'bob@yahoo.com')
 print(bob.name)
+# no () after name because it is not a method
 print(bob.email)
 
 
+
+"""Ch. 6.8"""
+
+'attribute access: ' \
+'object attributes that cannot be accessed directly from outside'
+
+class Duck():
+    def __init__(self, input_name):
+        self.hidden_name = input_name
+    def get_name(self):
+        print('Inside the getter')
+        return self.hidden_name
+    def set_name(self, input_name):
+        print('inside the setter')
+        self.hidden_name = input_name
+
+    name = property(get_name, set_name)
+    # first argu in property is getter (to get the value of property)
+    # second argu is setter (to set the value of property)
+
+fowl = Duck('Howard')
+print(fowl.name)
+print(fowl.get_name())
+
+fowl.set_name('Daffy')
+print(fowl.name)
+print(fowl.get_name())
+
+
+'Use decorator to indicate getter and setter'
+
+class Duck2():
+    def __init__(self, input_name):
+        self.hidden_name = input_name
+    @property
+    def name(self):
+        print('inside the getter')
+        return self.hidden_name
+    @name.setter
+    def name(self, input_name):
+        print('inside setter')
+        self.hidden_name = input_name
+
+
+fowl2 = Duck2('Howard2')
+print(fowl2.name)
 
