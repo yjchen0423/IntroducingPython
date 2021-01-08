@@ -29,3 +29,4 @@ from collections import defaultdict
 dict_to_list = defaultdict(list)
 dict_to_list['a'].append('something for a')
 print(dict_to_list['a'])
+
