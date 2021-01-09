@@ -221,8 +221,9 @@ class Duck3():
         print("inside the getter")
         return self.__name
     @name.setter
-    def name(self):
+    def name(self, input_name):
         self.__name = input_name
+
 
 fowl3 = Duck3('Howard3')
 print(fowl3.name)
@@ -231,5 +232,91 @@ print(fowl3.name)
 
 
 """Ch. 6.10"""
+'instance method - have self argument in methods within a class'
+'class method - affects the class as a whole, use @classmethod decorator'
 
+class A():
+    count = 0
+    def __init__(self):
+        A.count += 1
+    def exclaim(self):
+        print('I am an A!')
+    @classmethod
+    def kids(cls):
+        print(f'A has {cls.count} little objects.')
+
+A1 = A()
+A2 = A()
+A3 = A()
+A4 = A()
+A.kids()
+
+
+'staticmethod - do not need to create class object'
+
+class CoyoteWeapon():
+    @staticmethod
+    def commerical():
+        print('This CoyoteWeapon has been brought to you by Acme!')
+
+# no need to create an object like C = CoyoteWeapon()
+CoyoteWeapon.commerical()
+
+
+
+"""Ch. 6.11"""
+
+'polymorphism'
+
+class Quote():
+    def __init__(self, person, words):
+        self.person = person
+        self.words = words
+
+    def who(self):
+        return self.person
+
+    def says(self):
+        return self.words + '.'
+
+class QuestionQuote(Quote):
+    def says(self):
+        return self.words + '?'
+
+class ExclamationQuote(Quote):
+    def says(self):
+        return self.words + '!'
+
+
+hunter1 = Quote('Fudd', 'I am hunting rabbits')
+print(f'{hunter1.who()} says {hunter1.says()}')
+
+hunted1 = QuestionQuote('Bunny', 'What\'s up, doc')
+print(f'{hunted1.who()} says {hunted1.says()}')
+
+hunted2 = ExclamationQuote('Duck', 'It\'s rabbit')
+print(f'{hunted2.who()} says {hunted2.says()}')
+
+
+# -----------
+
+class BabblingBrook():
+    def who(self):
+        return 'Brook'
+    def says(self):
+        return 'Babble'
+
+brook = BabblingBrook()
+
+
+
+def who_says(obj):
+    print(f"{obj.who()} says {obj.says()}")
+
+# plug object (hunter1, hunted1, hunted2, brook that were created through class)
+# brook is not child of Quote so it will not return the same conents as them
+who_says(hunter1)
+who_says(hunted1)
+who_says(hunted2)
+who_says(brook)
 
