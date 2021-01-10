@@ -320,3 +320,6 @@ who_says(hunted1)
 who_says(hunted2)
 who_says(brook)
 
+
+"""Ch. 6.12"""
+
