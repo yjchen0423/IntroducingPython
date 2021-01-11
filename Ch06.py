@@ -355,7 +355,173 @@ print(first)
 first
 
 
-
 """Ch. 6.13"""
 
+'Aggregation and Composition'
 
+class Bill():
+    def __init__(self, description):
+        self.description = description
+
+class Tail():
+    def __init__(self, length):
+        self.length = length
+
+class Duck():
+    def __init__(self, bill, tail):
+        self.bill = bill
+        self.tail = tail
+    def about(self):
+        print(f"This duck has a {bill.description} bill and a {tail.length} tail.")
+
+
+tail = Tail('long')
+bill = Bill('wild orange')
+duck = Duck(tail, bill)
+duck.about()
+
+
+
+"""Ch. 6.15"""
+
+# 1.
+class Thing():
+    pass
+
+print(Thing)
+example = Thing()
+print(example)
+
+# 2.
+class Thing2():
+    letters = 'abc'
+
+print(Thing2.letters)
+
+# 3.
+class Thing3():
+    def __init__(self):
+        self.letters = 'xyz'
+
+thing3 = Thing3()
+print(thing3.letters)
+
+# 4.
+class Element():
+    def __init__(self, name, symbol, number):
+        self.name = name
+        self.symbol = symbol
+        self.number = number
+
+
+element1 = Element('Hydrogen', 'H', 1)
+print(element1.name)
+print(element1.symbol)
+print(element1.number)
+
+# 5.
+dict1 = {'name': 'Hydrogen', 'symbol': 'H', 'number': 1}
+
+hydrogen = Element(dict1['name'], dict1['symbol'], dict1['number'])
+print(hydrogen.name)
+print(hydrogen.symbol)
+print(hydrogen.number)
+
+# 6.
+class Element():
+    def __init__(self, name, symbol, number):
+        self.name = name
+        self.symbol = symbol
+        self.number = number
+    def dump(self):
+        return f"The element's name is {self.name}, symbol is {self.symbol}, and number is {self.number}."
+
+hydrogen = Element(dict1['name'], dict1['symbol'], dict1['number'])
+print(hydrogen.dump())
+
+# 7.
+print(hydrogen)
+class Element():
+    def __init__(self, name, symbol, number):
+        self.name = name
+        self.symbol = symbol
+        self.number = number
+    def __str__(self):
+        return f"The element's name is {self.name}, symbol is {self.symbol}, and number is {self.number}."
+
+
+hydrogen = Element(dict1['name'], dict1['symbol'], dict1['number'])
+print(hydrogen)
+
+# 8.
+class Element():
+    def __init__(self, name, symbol, number):
+        self.__name = name
+        self.__symbol = symbol
+        self.__number = number
+
+    @property
+    def name(self):
+        return self.__name
+
+    @property
+    def symbol(self):
+        return self.__symbol
+
+    @property
+    def number(self):
+        return self.__number
+
+hydrogen = Element(dict1['name'], dict1['symbol'], dict1['number'])
+print(hydrogen.name)
+print(hydrogen.symbol)
+print(hydrogen.number)
+
+# 9.
+class Bear():
+    def eats(self):
+        return 'berries'
+
+class Rabbit():
+    def eats(self):
+        return 'clover'
+
+class Octothorpe():
+    def eats(self):
+        return 'campers'
+
+bear1 = Bear()
+print(bear1.eats())
+
+rabbit1 = Rabbit()
+print(rabbit1.eats())
+
+octothorpe1 = Octothorpe()
+print(octothorpe1.eats())
+
+# 10.
+class Laser():
+    def does(self):
+        return 'disintegrate'
+
+class Claw():
+    def does(self):
+        return 'crush'
+
+class SmartPhone():
+    def does(self):
+        return 'ring'
+
+class Robot():
+    def __init__(self, laser, claw, smartphone):
+        self.laser = laser
+        self.claw = claw
+        self.smartphone =smartphone
+    def does(self):
+        return f'robots can do {self.laser.does()}, {self.claw.does()}, and {self.smartphone.does()}'
+
+laser1 = Laser()
+claw1 = Claw()
+smartphone1 = SmartPhone()
+robot1 = Robot(laser1, claw1, smartphone1)
+print(robot1.does())
