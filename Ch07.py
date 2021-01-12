@@ -112,5 +112,61 @@ print('{0:!^20s}'.format('BIG SALE'))
 """Ch. 7.1.3"""
 
 'Regular Expression'
+'re module'
+'match()'
+# match('pattern', 'source')
 
 
+import re
+source = 'Young Frank'
+
+m = re.match('You', source)
+if m:
+    print(m.group())
+    # all matches are returned as m.group()
+
+m = re.match('^You', source)
+if m:
+    print(m.group())
+
+m = re.match('Frank', source)
+if m:
+    print(m.group())
+else:
+    print('Not found!')
+
+m = re.match('.*Frank', source)
+if m:
+    print(m.group())
+    # . means any single character
+    # * means zero or more of the preceding thing
+    # .* means any number of characters
+
+m = re.search('Frank', source)
+if m:
+    print(m.group())
+
+'findall() - return all matched results'
+m = re.findall('n', source)
+print(m)
+print(f"Found {len(m)} matches")
+
+m = re.findall('n.?', source)
+print(m)
+# .? means zero or one of any single character
+
+'split() - split by pattern'
+m = re.split('n', source)
+print(m)
+
+'sub("pattern1", "pattern2", source) - replace "pattern1" with "pattern2" in source'
+m = re.sub('n', '?', source)
+print(m)
+
+
+'special characters'
+"""
+\d      a single digit
+\D      a single non-digit
+\w      a alphanumeric character
+"""
