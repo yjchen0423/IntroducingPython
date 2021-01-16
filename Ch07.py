@@ -202,6 +202,29 @@ abc             literal abc
 (expr)          expr
 expr1|expr2     expr1 or expr2
 .               any character expect \n
-
-
+^               start of source string
+$               end of source string
+prev?           zero or one prev
+prev*           zero or more prev, as many as possible
+prev*?          zero or more prev, as few as possible
+prev+           one or more prev, as many as possible
+prev+?          one or more prev, as few as possible
+prev{m}         m consecutive prev
+prev{m,n}       m to n consecutive prev, as many as possible
+prev{m,n}?      m to n consecutive prev, as few as possible
+[abc]           a or b or c
+[^abc]          not (a or b or c)
+prev(?=next)    prev if followed by next
+prev(?!next)    prev if not followed by next
+(?<=prev)next   next if preceded by prev
+(?<!prev)next   next if not preceded by prev
 """
+
+source = """I wish I may, I wish I might
+            Have a dish of fish tonight."""
+
+print(re.findall('wish', source))
+
+
+
+
