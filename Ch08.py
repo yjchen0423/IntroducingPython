@@ -172,9 +172,24 @@ print(bdata[0])
 
 
 
-"""Ch. 8.2"""
+"""Ch. 8.2.1"""
+
+'reading csv'
 
 
 
+import csv
+
+villains =[
+    ['Doctor', 'No'],
+    ['Rosa', 'Klebb'],
+    ['Mister', 'Big'],
+    ['Auric', 'Goldfinger'],
+    ['Ernst', 'Blofeld'],
+]
+
+with open('villains', 'wt') as fout:
+    csvout = csv.writer(fout)
+    csvout.writerows(villains)
 
 
