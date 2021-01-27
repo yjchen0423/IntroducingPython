@@ -243,3 +243,57 @@ print(len(root))  # number of menu orders: 3, breakfast, lunch, and dinner
 print(len(root[0]))  # number of breakfast items
 
 
+"""Ch. 8.2.4"""
+
+'dump()'
+
+menu = \
+{
+    "breakfast": {
+        "hours": "7-11",
+        "items": {
+            "breakfast burritos": "$6.00",
+            "pancakes": "$4.00"
+            }
+        },
+    "lunch": {
+
+        "hours": "11-3",
+        "items": {
+            "hamburger": "$5.00"
+            }
+        },
+    "dinner": {
+        "hours": "3-10",
+        "items": {
+            "spaghetti": "$8.00"
+        }
+    }
+}
+
+'dump() - encode to json string'
+
+import json
+menu_json = json.dumps(menu)
+print(menu_json)
+
+
+'loads() - convert json string to Python'
+menu2 = json.loads(menu_json)
+print(menu2)
+
+
+"""Ch. 8.2.5"""
+'YAML'
+
+import yaml
+
+with open('mcintyre.yaml', 'rt') as fin:
+    text = fin.read()
+
+data = yaml.load(text)
+
+print(data['details'])
+print(len(data['poems']))
+
+
