@@ -181,15 +181,65 @@ print(bdata[0])
 import csv
 
 villains =[
-    ['Doctor', 'No'],
-    ['Rosa', 'Klebb'],
-    ['Mister', 'Big'],
-    ['Auric', 'Goldfinger'],
-    ['Ernst', 'Blofeld'],
+    ['Doctor', 'No'],['Rosa', 'Klebb'],['Mister', 'Big'],['Auric', 'Goldfinger'],['Ernst', 'Blofeld'],
 ]
 
 with open('villains', 'wt') as fout:
     csvout = csv.writer(fout)
     csvout.writerows(villains)
+
+import csv
+with open('villains', 'rt') as fin:
+    cin = csv.reader(fin)
+    villains = [row for row in cin]
+
+print(villains)
+
+import csv
+with open('villains', 'rt') as fin:
+    cin = csv.DictReader(fin, fieldnames=['first', 'last'])
+    villains = [row for row in cin]
+
+print(villains)
+
+
+'DictWriter(), writeheader()'
+
+import csv
+villains =[
+    {'first': 'Doctor', 'last': 'No'},{'first': 'Rosa', 'last': 'Klebb'}, {'first': 'Mister', 'last': 'Big'}, {'first': 'Auric', 'last': 'Goldfinger'}, {'first': 'Ernst', 'last': 'Blofeld'},
+]
+
+with open('villains', 'wt') as fout:
+    cout = csv.DictWriter(fout, ['first', 'last'])
+    cout.writeheader()
+    cout.writerows(villains)
+
+
+import csv
+with open('villains', 'rt') as fin:
+    cin = csv.DictReader(fin)
+    villains = [row for row in cin]
+
+print(villains)
+
+
+"""Ch. 8.2.2"""
+
+'XML'
+
+import xml.etree.ElementTree as et
+tree = et.ElementTree(file='menu.xml')
+
+root = tree.getroot()
+print(root.tag)
+
+for child in root:
+    print('tag: ', child.tag, 'attribute:', child.attrib)
+    for grandchild in child:
+        print('\ttag:', grandchild.tag, 'attributes: ', grandchild.attrib)
+
+print(len(root))  # number of menu orders: 3, breakfast, lunch, and dinner
+print(len(root[0]))  # number of breakfast items
 
 
